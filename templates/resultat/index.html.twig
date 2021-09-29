@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Calendriers{% endblock %}
+
+{% block body %}
+
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 990px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <a  href="{{ path('resultat_create') }}"><button type='button' class='btn btn-info'>crée nouvelle resultat</button></a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>medaille</th>
+                        <th> rang</th>
+                        <th> temps</th>
+{#                        <th> ecart</th>#}
+{#                        <th> vitesse</th>#}
+                        <th> poids</th>
+                        <th> nombre participants</th>
+                         <th> id athlete</th>
+                         <th> id epreuve</th>
+                        <th>moddifier</th>
+                        <th>supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resultat in resultats %}
+                        <tr>
+                            <td>{{ resultat.getMedaille() }}</td>
+                            <td>{{ resultat.getRang() }}</td>
+                            <td>{{ resultat.getTemps() }}</td>
+{#                            <td>{{ resultat.getEcart() }}</td>#}
+{#                            <td>{{ resultat.getVitesse() }}</td>#}
+                            <td>{{ resultat.getPoids() }}</td>
+                            <td>{{ resultat.getNombreParticipants() }}</td>
+                            <td>{{ resultat.getIdAthlete() }}</td>
+                            <td>{{ resultat.getIdEpreuve() }}</td>
+                            <td><a  href="{{ path('resultat_modification',{'id':resultat.getId()}) }}"><button type='button' class='btn btn-info'>modifier</button></a> </td>
+                            <td><a  href="{{ path('deleteById_resultat',{'id':resultat.getId()}) }}"><button type='button' class='btn btn-danger'>supprimer</button></a> </td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+{% endblock %}

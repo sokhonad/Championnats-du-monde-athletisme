@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des athletes{% endblock %}
+
+{% block body %}
+
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            /*max-width: 998px;*/
+            width: 100%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <a  href="{{ path('athlete_create') }}"><button type='button' class='btn btn-info'>crée nouvelle athlete</button></a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nom</th>
+                        <th>prenom</th>
+                        <th>sexe</th>
+                        <th>poids</th>
+                        <th>code pays</th>
+                        <th>taille</th>
+                        <th>ville</th>
+                        <th>moddifier</th>
+                        <th>supprimer</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for athlete in athletes %}
+                        <tr>
+                            <td>{{ athlete.getId() }}</td>
+                            <td>{{ athlete.getNomAthlete() }}</td>
+                            <td>{{ athlete.getPrenomAthlete() }}</td>
+                            <td>{{ athlete.getSexeAthlete() }}</td>
+{#                            <td>{{ athlete.getNationaliteAthlete() }}</td>#}
+                            <td>{{ athlete.getPoidsAthlete() }}</td>
+                            <td>{{ athlete.getCodePaysAthlete() }}</td>
+                            <td>{{ athlete.getTailleAthlete() }}</td>
+                            <td>{{ athlete.getVilleAthlete() }}</td>
+                            <td><a  href="{{ path('athlete_modification',{'id':athlete.getId()}) }}"><button type='button' class='btn btn-info'>modifier</button></a> </td>
+                            <td><a  href="{{ path('deleteById_athlete',{'id':athlete.getId()}) }}"><button type='button' class='btn btn-danger'>supprimer</button></a> </td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

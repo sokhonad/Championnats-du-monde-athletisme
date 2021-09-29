@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h1> Creation d'un formulaire </h1>
+    {{ form_start(formResultat) }}
+
+    {{ form_widget(formResultat) }}
+
+    <button type="submit" class="btn btn-success">
+        {% if textBoutton %}
+            Valider les modification
+        {% else %}
+            Enregistrer
+        {% endif %}
+    </button>
+
+    {{ form_end(formResultat) }}
+{% endblock %}
